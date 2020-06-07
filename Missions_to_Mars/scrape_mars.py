@@ -2,19 +2,27 @@
 # coding: utf-8
 
 #dependencies
-from bs4 import BeautifulSoup
-import requests
-from splinter import Browser
-import pandas as pd
+# from bs4 import BeautifulSoup4
+# import requests
+# from splinter import Browser
+# import pandas as pd
 
+from splinter import Browser
+from bs4 import BeautifulSoup as bs
+import pandas as pd
+import numpy as np
+from selenium import webdriver
+import requests as req
+from splinter import browser
+from selenium import webdriver
 
 # NASA Mars News
 # Set Executable Path & Initialize Chrome Browser
 #get_ipython().system('which chromedriver')
 
 def init_browser():    
-    executable_path = {"executable_path": "/usr/local/bin/chromedriver/"}
-    return Browser("chrome", **executable_path, headless=False)
+    #executable_path = {"executable_path": "/usr/local/bin/chromedriver/"}
+    return Browser("chrome", executable_path="/usr/local/bin/chromedriver/", headless=False)
 
 
 def scrape():
@@ -34,10 +42,10 @@ def scrape():
 
     #place results in designated variables to be used later
     news_title = title
-    print(f"Title: {news_title}")
+    #print(f"Title: {news_title}")
 
     news_p = parag
-    print(f"Paragraph: {news_p}")
+    #print(f"Paragraph: {news_p}")
 
 
 
