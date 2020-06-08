@@ -30,23 +30,19 @@ def scrape_all():
 
     browser = init_browser()
 
-    #browser.visit('https://mars.nasa.gov/news/')
+    browser.visit('https://mars.nasa.gov/news/')
 
-    # time.sleep(3)
+    html = browser.html
+    news_soup = BeautifulSoup(html,'lxml')
 
-    # html = browser.html
-    # soup = BeautifulSoup(html,'html.parser')
+    title = news_soup.find_all('div', class_='content_title')
+    #place results in designated variables to be used later
+    news_title = title[1].text.strip()
+    print(news_title)
 
-    # title = soup.find('div', class_='content_title').find('a')
-
-    # parag = soup.find('div', class_='article_teaser_body')
-
-    # #place results in designated variables to be used later
-    # news_title = title
-    # print(f"Title: {news_title}")
-
-    # news_p = parag
-    # print(f"Paragraph: {news_p}")
+    parag = news_soup.find_all('div', class_='article_teaser_body')
+    news_p = parag 
+    print(news_p)
 
 
 
@@ -85,8 +81,9 @@ def scrape_all():
     mars_facts_df.head()
 
 
-    mars_html_table = mars_facts_df.to_html(classes='data table', index=False, header=False, border=0)
-    #mars_html_table = mars_facts_df.to_html()
+    #mars_html_table = mars_facts_df.to_html(classes='data table', index=False, header=False, border=0)
+    mars_html_table = mars_facts_df.to_html()
+    print(mars_html_table)
 
   
 
@@ -102,7 +99,7 @@ def scrape_all():
 
     hemis_orig_url = 'https://astrogeology.usgs.gov'
 
-    hemisphere_image_urls = []
+    hemisphere_urls = []
 
     hemis_items = hemis_soup.find_all('div', class_='item')
 
@@ -121,25 +118,25 @@ def scrape_all():
      
         img_url = hemis_orig_url + hemis_soup.find('img', class_='wide-image')['src']
     
-        hemisphere_image_urls.append({"title" : title, "img_url" : img_url})
+        hemisphere_urls.append({"title" : title, "img_url" : img_url})
     
-    #    print(f"{featured_image_url[item]}")
+        #print(f"{hemisphere_urls[item]}")
 
     # save all the compiled data about mars in a dictionary
     mars_dictionary = {
-        # "latest_news_title" : news_title,
-        # "latest_news_parag" : news_p,
+        "latest_news_title" : news_title,
+        "latest_news_parag" : news_p,
         "JPL_featured_image": featured_image_url,
         "mars_facts_table"  : mars_html_table,
-        "hemisphere_images" : hemisphere_image_urls
+        "hemisphere_images" : hemisphere_urls
     }   
     #for debugging only
-    print("this is my mars dictionary")
+    # print("this is my mars dictionary")
     # print(f"[latest_news_title]")
     # print(f"[latest_news_parag]")
-    print(f"[JPL_featured_image]")
-    print(f"[mars_facts_table]") 
-    print(f"[hemisphere_images]") 
+    # print(f"[JPL_featured_image]")
+    # print(f"[mars_facts_table]") 
+    # print(f"[hemisphere_images]") 
 
     # close browser
     browser.quit()
