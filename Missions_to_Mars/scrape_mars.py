@@ -8,13 +8,14 @@
 # import pandas as pd
 
 from splinter import Browser
-from bs4 import BeautifulSoup as bs
+from bs4 import BeautifulSoup
 import pandas as pd
 import numpy as np
 from selenium import webdriver
 import requests as req
 from splinter import browser
 from selenium import webdriver
+import time
 
 # NASA Mars News
 # Set Executable Path & Initialize Chrome Browser
@@ -25,27 +26,27 @@ def init_browser():
     return Browser("chrome", executable_path="/usr/local/bin/chromedriver/", headless=False)
 
 
-def scrape():
+def scrape_all():
 
     browser = init_browser()
 
-    browser.visit('https://mars.nasa.gov/news/')
-    
+    #browser.visit('https://mars.nasa.gov/news/')
 
-    html = browser.html
-    soup = BeautifulSoup(html,'html.parser')
+    # time.sleep(3)
 
+    # html = browser.html
+    # soup = BeautifulSoup(html,'html.parser')
 
-    title = soup.find('div', class_='content_title').find('a')
+    # title = soup.find('div', class_='content_title').find('a')
 
-    parag = soup.find('div', class_='article_teaser_body')
+    # parag = soup.find('div', class_='article_teaser_body')
 
-    #place results in designated variables to be used later
-    news_title = title
-    #print(f"Title: {news_title}")
+    # #place results in designated variables to be used later
+    # news_title = title
+    # print(f"Title: {news_title}")
 
-    news_p = parag
-    #print(f"Paragraph: {news_p}")
+    # news_p = parag
+    # print(f"Paragraph: {news_p}")
 
 
 
@@ -53,7 +54,7 @@ def scrape():
 
     browser.visit("https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars")
 
-    
+    time.sleep(3)
 
     browser.click_link_by_partial_text('FULL IMAGE')
     
@@ -66,13 +67,16 @@ def scrape():
 
     orig_url = "https://www.jpl.nasa.gov"
     featured_image_url = orig_url + mars_img_url
-
+    print(f"{featured_image_url}")
+    time.sleep(2)
 
 
 
     # Mars Facts
 
     mars_facts_url = 'https://space-facts.com/mars/'
+
+    time.sleep(3)
 
     tables_found = pd.read_html(mars_facts_url)
 
@@ -119,21 +123,31 @@ def scrape():
     
         hemisphere_image_urls.append({"title" : title, "img_url" : img_url})
     
+    #    print(f"{featured_image_url[item]}")
+
     # save all the compiled data about mars in a dictionary
     mars_dictionary = {
-        "latest_news_title" : news_title,
-        "latest_news_parag" : news_p,
+        # "latest_news_title" : news_title,
+        # "latest_news_parag" : news_p,
         "JPL_featured_image": featured_image_url,
         "mars_facts_table"  : mars_html_table,
         "hemisphere_images" : hemisphere_image_urls
     }   
+    #for debugging only
+    print("this is my mars dictionary")
+    # print(f"[latest_news_title]")
+    # print(f"[latest_news_parag]")
+    print(f"[JPL_featured_image]")
+    print(f"[mars_facts_table]") 
+    print(f"[hemisphere_images]") 
 
     # close browser
     browser.quit()
 
     return mars_dictionary
-         
 
+if __name__ == "__main__":  
+    print(scrape_all()) 
 
 
 
