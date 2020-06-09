@@ -5,16 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Mars Facts</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../static/styles.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <!-- <link rel="stylesheet" href="../static/styles.css"> -->
 </head>
-
+<div class="page-container" style="background-color: beige;"> 
 <header class="header-container">
-    <div class="container style="background-color: grey;" style="color:black;">
-      <div class="row h-100 align-items-center">
+    <div class="head-container">
+      <div class="row h-75 align-items-center">
         <div class="col-12 text-center"  id="vpadding">
-          <h1 class="font-weight-light" style="color:blue">MISSION TO MARS</h1>
-          <p><a class="btn btn-primary btn-lg" style="background-color:rgb(7,7,58); border: 0px;" 
+          <h1 class="font-weight-light" style="color:black">MISSION TO MARS</h1>
+          <p><a class="btn btn-primary btn-lg" style="background-color:rgb(2, 2, 22); border: 25px;" 
                  href="http://127.0.0.1:5000/scrape" role="button">Scrape New Data</a></p>
         </div>
       </div>
@@ -25,111 +27,114 @@
 
  <!-- Mars latest News -->
   <div class="container-fluid"> 
-    <div class="row" style="background-color: grey;" style="color:black;">
+    <div class="row" style="background-color:lightgray;" style="color:black;">
   
-      <div class="col-md-6" style="padding:20px;">
-        <h2>Latest Mars News:</h2>
+      <div class="col-md-12" style="padding:20px; align-items: center;">
+        <h2>Latest Mars News</h2>
         <h3>{{mars_dictionary.latest_news_title}}</h3>
-        <p>{{mars_dictionary.latest_news_p}}</p>
-      </div>
-      </div>
-  
-      <div class="col-md-6 text-center">
-        <img src="../static/news.png" style="width: 300px; height: 300px;">
+        <p>{{mars_dictionary.latest_news_parag}}</p>
       </div>
     </div>
   </div>
 
   <!-- Mars JPL featured image -->
 
-  <div class="row">
-    <div class="col-md-8">
-      <h2>FEATURED MARS IMAGE</h2>
-      <img src="{{mars_dictionary.JPL_featured_image}}" class="img-responsive"
-        alt="Responsive image">
-    </div>
-
-
-
-
-
-
-
-  <!-- Mars Facts table 
-  <div class="container-fluid" style=background-color:rgb(7,7,58)>
-    <div class="row" style="background-color:whitesmoke;">
-      <div class="col-md-6" style="margin: 20px;">
-        <h2>MARS DATA</h2>
-        <p>{{ mars_dictionary.mars_facts_table|safe }}</p>
+  <div class="container-fluid">  
+    <div class="row">
+      <div class="col-md-12">
+         <!-- <h2>Featured Mars Image</h2> -->
+         <h3 style="text-align: center; padding:20px; margin:20px;">Featured Mars Image</h3>
+         <img src="{{mars_dictionary.JPL_featured_image}}" class="img-responsive"
+              alt="Responsive image" style="max-width:50%; margin-left:25%">
       </div>
-    </div> 
-  </div>  -->
+    </div>
+  </div>
 
-  <table border="1" class="dataframe">
-    <thead>
-      <tr style="text-align: right;">
-        <th></th>
-        <th>0</th>
-        <th>1</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th>0</th>
-        <td>Equatorial Diameter:</td>
-        <td>6,792 km</td>
-      </tr>
-      <tr>
-        <th>1</th>
-        <td>Polar Diameter:</td>
-        <td>6,752 km</td>
-      </tr>
-      <tr>
-        <th>2</th>
-        <td>Mass:</td>
-        <td>6.39 × 10^23 kg (0.11 Earths)</td>
-      </tr>
-      <tr>
-        <th>3</th>
-        <td>Moons:</td>
-        <td>2 (Phobos &amp; Deimos)</td>
-      </tr>
-      <tr>
-        <th>4</th>
-        <td>Orbit Distance:</td>
-        <td>227,943,824 km (1.38 AU)</td>
-      </tr>
-      <tr>
-        <th>5</th>
-        <td>Orbit Period:</td>
-        <td>687 days (1.9 years)</td>
-      </tr>
-      <tr>
-        <th>6</th>
-        <td>Surface Temperature:</td>
-        <td>-87 to -5 °C</td>
-      </tr>
-      <tr>
-        <th>7</th>
-        <td>First Record:</td>
-        <td>2nd millennium BC</td>
-      </tr>
-      <tr>
-        <th>8</th>
-        <td>Recorded By:</td>
-        <td>Egyptian astronomers</td>
-      </tr>
-    </tbody>
-  </table>
+  <!-- Mars Facts table -->
+  <div class="table-container" style="align-items:center;">
+  <div class="container-fluid">  
+    <div class="row">
+      <div class="col-md-12" style="align-content: center;">
+        <!-- <h2> Mars Data Facts</h2> -->
+        <h3 style="text-align: center; padding-top: 30px; margin-top: 30px;">Mars Data Facts</h3>
+        <table border="2" class="dataframe" style="margin-left:35%;">
+           <thead>
+              <tr style="text-align:right;">
+                 <th></th>
+                 <th>Value</th>
+              </tr>
+           </thead>
+           <tbody>
+              <tr>
+                <td>Equatorial Diameter:</td>
+                <td>6,792 km</td>
+              </tr>
+              <tr>
+                <td>Polar Diameter:</td>
+                <td>6,752 km</td>
+              </tr>
+              <tr>
+                <td>Mass:</td>
+                <td>6.39 × 10^23 kg (0.11 Earths)</td>
+              </tr>
+              <tr>
+                <td>Moons:</td>
+                <td>2 (Phobos &amp; Deimos)</td>
+              </tr>
+              <tr>
+                <td>Orbit Distance:</td>
+                <td>227,943,824 km (1.38 AU)</td>
+              </tr>
+              <tr>
+                <td>Orbit Period:</td>
+                <td>687 days (1.9 years)</td>
+              </tr>
+              <tr>
+                <td>Surface Temperature:</td>
+                <td>-87 to -5 °C</td>
+              </tr>
+              <tr>
+                <td>First Record:</td>
+                <td>2nd millennium BC</td>
+              </tr>
+              <tr>
+                <td>Recorded By:</td>
+                <td>Egyptian astronomers</td>
+              </tr>
+           </tbody>
+        </table>
+     </div> 
+    </div>
+  </div>
+  </div>
 
+  <h3 style="text-align: center; padding-top: 30px; margin-top: 30px;">Mars Hemispheres</h3>
+  <div class="card-deck">
+      <hr>
+      <div class="col-md-12">
+          <div class="row">
+              {% for item in mars_dictionary.hemisphere_images %}
+              <div class="col-md-6">
+                  <div class="card text-white bg-dark" style="margin: 30px;">
+                      <img class="card-img-top" src="{{ item.img_url }}" />
+                      <div class="card-body">
+                          <p class="card-text">{{ item.title }}</p>
+                      </div>
+                  </div>
+              </div>
+              {% endfor %}
+          </div>
+      </div>
+  </div><!-- Close main container -->
+  </div>
 
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+  crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+  crossorigin="anonymous"></script>
 
-
-
-
-
-
- 
 </body>
   
 </html>
